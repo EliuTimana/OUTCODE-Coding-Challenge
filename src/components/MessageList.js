@@ -68,13 +68,13 @@ class MessageList extends Component {
         {this.renderButton()}
         <Row>
           <Column>
-            <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)}/>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)} type={1}/>
           </Column>
           <Column>
-            <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)}/>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)} type={2}/>
           </Column>
           <Column>
-            <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)}/>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)} type={3}/>
           </Column>
         </Row>
       </div>
