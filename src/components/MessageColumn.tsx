@@ -31,7 +31,7 @@ export const MessageColumn = ({messages, type, onDelete}: Props) => {
     }
 
     return <Column>
-        <h1>{getType()}</h1>
+        <h1 style={{marginBottom: '0'}}>{getType()}</h1>
         <span>
             Count {messages.length}
         </span>
