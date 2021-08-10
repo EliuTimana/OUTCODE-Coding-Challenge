@@ -1,15 +1,15 @@
 import {Message} from "../models";
 import {MessageItem} from "./MessageItem";
 import styled from 'styled-components'
+
 export interface Props {
     messages: Message[]
 }
-const Column=styled.div`
-        display: flex;
-      flex-direction: column;
-      margin-left: 5px;
-      margin-right: 5px;
-    `
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 export const MessageColumn = ({messages}: Props) => {
     return <Column>

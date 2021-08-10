@@ -5,8 +5,12 @@ import {MessageColumn} from "./MessageColumn";
 import styled from "styled-components";
 
 const Row = styled.div`
-display: flex;
+  display: flex;
   flex-direction: row;
+`
+
+const Column = styled.div`
+  flex: 1;
 `
 
 class MessageList extends Component {
@@ -63,9 +67,15 @@ class MessageList extends Component {
       <div>
         {this.renderButton()}
         <Row>
-          <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)}/>
-          <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)}/>
-          <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)}/>
+          <Column>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)}/>
+          </Column>
+          <Column>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)}/>
+          </Column>
+          <Column>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)}/>
+          </Column>
         </Row>
       </div>
     )
