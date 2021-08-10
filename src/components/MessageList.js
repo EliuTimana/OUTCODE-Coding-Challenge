@@ -33,10 +33,10 @@ class MessageList extends Component {
 
   messageCallback(message) {
     const { messages } = this.state
+    messages.unshift(message)
     this.setState({
       messages: [
-        ...messages.slice(),
-        message,
+        ...messages.slice()
       ],
     }, () => {
       // Included to support initial direction. Please remove upon completion
