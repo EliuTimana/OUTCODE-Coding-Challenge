@@ -1,8 +1,13 @@
+// @ts-ignore
 import random from 'lodash/random';
+// @ts-ignore
 import faker from 'faker';
+import {Message} from "./models";
 
 export default class MessageGenerator {
-  constructor(options) {
+  messageCallback: (message: Message)=>{}
+  stopGeneration: boolean
+  constructor(options: any) {
     this.messageCallback = options.messageCallback
     this.stopGeneration = false
   }

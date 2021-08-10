@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import Api from '../Api'
+import Api from '../api'
+import {MessageColumn} from "./MessageColumn";
+import styled from "styled-components";
+
+const Row = styled.div`
+display: flex;
+  flex-direction: row;
+`
 
 class MessageList extends Component {
   constructor(...args) {
@@ -29,7 +36,6 @@ class MessageList extends Component {
       ],
     }, () => {
       // Included to support initial direction. Please remove upon completion
-      console.log(messages)
     })
   }
 
@@ -56,6 +62,11 @@ class MessageList extends Component {
     return (
       <div>
         {this.renderButton()}
+        <Row>
+          <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)}/>
+          <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)}/>
+          <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)}/>
+        </Row>
       </div>
     )
   }
