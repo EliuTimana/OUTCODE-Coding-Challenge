@@ -79,12 +79,18 @@ class MessageList extends Component {
     });
   }
 
+  handleDeleteAll = () => {
+    this.setState({
+      messages: []
+    });
+  }
+
   render() {
     return (
       <div>
         <ButtonsContainer>
           {this.renderButton()}
-          <StyledButton variant="contained">CLEAR</StyledButton>
+          <StyledButton variant="contained" onClick={()=>this.handleDeleteAll()}>CLEAR</StyledButton>
         </ButtonsContainer>
         <Row>
           <Column>
