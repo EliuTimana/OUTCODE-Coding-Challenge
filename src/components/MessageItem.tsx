@@ -9,7 +9,7 @@ export interface MessageProps extends Message {
 
 const StyledCard = styled(Card)`
   margin: 5px;
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.color}!important;
 `
 
 export const MessageItem = ({message, priority, onClear}: MessageProps) => {

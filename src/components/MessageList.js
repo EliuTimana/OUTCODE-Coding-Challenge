@@ -13,6 +13,16 @@ const Column = styled.div`
   flex: 1;
 `
 
+const StyledButton = styled(Button)`
+  background-color: #88FCA3 !important;
+  color: black;
+`
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 class MessageList extends Component {
   constructor(...args) {
     super(...args)
@@ -46,7 +56,7 @@ class MessageList extends Component {
   renderButton() {
     const isApiStarted = this.api.isStarted()
     return (
-      <Button
+      <StyledButton
         variant="contained"
         onClick={() => {
           if (isApiStarted) {
@@ -57,15 +67,18 @@ class MessageList extends Component {
           this.forceUpdate()
         }}
       >
-        {isApiStarted ? 'Stop Messages' : 'Start Messages'}
-      </Button>
+        {isApiStarted ? 'STOP' : 'START'}
+      </StyledButton>
     )
   }
 
   render() {
     return (
       <div>
-        {this.renderButton()}
+        <ButtonsContainer>
+          {this.renderButton()}
+          <StyledButton variant="contained">CLEAR</StyledButton>
+        </ButtonsContainer>
         <Row>
           <Column>
             <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)} type={1}/>
