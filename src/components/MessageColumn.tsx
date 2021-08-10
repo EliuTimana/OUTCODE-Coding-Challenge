@@ -5,6 +5,7 @@ import styled from 'styled-components'
 export interface Props {
     messages: Message[];
     type: number;
+    onDelete:(id:string)=>{}
 }
 
 const Column = styled.div`
@@ -12,7 +13,7 @@ const Column = styled.div`
   flex-direction: column;
 `
 
-export const MessageColumn = ({messages, type}: Props) => {
+export const MessageColumn = ({messages, type, onDelete}: Props) => {
 
     const getType = () => {
         switch (type) {
@@ -24,11 +25,16 @@ export const MessageColumn = ({messages, type}: Props) => {
                 return `Info type ${type}`;
         }
     }
+
+    const handleClear = (id: string) => {
+
+    }
+
     return <Column>
         <h1>{getType()}</h1>
         <span>
             Count {messages.length}
         </span>
-        {messages.map((m, i) => <MessageItem message={m.message} priority={m.priority} key={i}/>)}
+        {messages.map((m, i) => <MessageItem message={m} key={m.id} onClear={(id)=>onDelete(id)}/>)}
     </Column>
 }

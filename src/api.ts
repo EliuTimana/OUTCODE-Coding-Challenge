@@ -5,7 +5,7 @@ import faker from 'faker';
 import {Message} from "./models";
 
 export default class MessageGenerator {
-  messageCallback: (message: Message)=>{}
+  messageCallback: (message: any)=>{}
   stopGeneration: boolean
   constructor(options: any) {
     this.messageCallback = options.messageCallback

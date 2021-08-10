@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button'
 import Api from '../api'
 import {MessageColumn} from "./MessageColumn";
 import styled from "styled-components";
+import {uniqueId} from "lodash";
 
 const Row = styled.div`
   display: flex;
@@ -43,7 +44,7 @@ class MessageList extends Component {
 
   messageCallback(message) {
     const { messages } = this.state
-    messages.unshift(message)
+    messages.unshift({...message, id: uniqueId()})
     this.setState({
       messages: [
         ...messages.slice()
@@ -72,6 +73,12 @@ class MessageList extends Component {
     )
   }
 
+  handleDelete = (id) => {
+    this.setState({
+      messages: this.state.messages.filter(m => m.id != id)
+    });
+  }
+
   render() {
     return (
       <div>
@@ -81,13 +88,13 @@ class MessageList extends Component {
         </ButtonsContainer>
         <Row>
           <Column>
-            <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)} type={1}/>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===1)} type={1} onDelete={id=> this.handleDelete(id)}/>
           </Column>
           <Column>
-            <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)} type={2}/>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===2)} type={2} onDelete={id=> this.handleDelete(id)}/>
           </Column>
           <Column>
-            <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)} type={3}/>
+            <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)} type={3} onDelete={id=> this.handleDelete(id)}/>
           </Column>
         </Row>
       </div>
