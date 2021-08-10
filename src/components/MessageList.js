@@ -67,6 +67,7 @@ class MessageList extends Component {
     return (
       <StyledButton
         variant="contained"
+        style={{marginRight:'5px'}}
         onClick={() => {
           if (isApiStarted) {
             this.api.stop()
