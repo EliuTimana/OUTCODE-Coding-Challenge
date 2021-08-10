@@ -18,11 +18,11 @@ export const MessageColumn = ({messages, type, onDelete}: Props) => {
     const getType = () => {
         switch (type) {
             case 1:
-                return `Error type ${type}`;
+                return `Error Type ${type}`;
             case 2:
-                return `Warning type ${type}`;
+                return `Warning Type ${type}`;
             case 3:
-                return `Info type ${type}`;
+                return `Info Type ${type}`;
         }
     }
 
