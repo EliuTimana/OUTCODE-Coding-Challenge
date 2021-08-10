@@ -4,6 +4,7 @@ import Api from '../api'
 import {MessageColumn} from "./MessageColumn";
 import styled from "styled-components";
 import {uniqueId} from "lodash";
+import {Snackbar} from "@material-ui/core";
 
 const Row = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ class MessageList extends Component {
     super(...args)
     this.state = {
       messages: [],
+      lastError: null
     }
   }
 
@@ -44,7 +46,13 @@ class MessageList extends Component {
 
   messageCallback(message) {
     const { messages } = this.state
-    messages.unshift({...message, id: uniqueId()})
+    const newMessage = {...message, id: uniqueId()}
+    messages.unshift(newMessage)
+    if (message.priority == 1) {
+      this.setState({
+        lastError: newMessage
+      })
+    }
     this.setState({
       messages: [
         ...messages.slice()
@@ -85,9 +93,15 @@ class MessageList extends Component {
     });
   }
 
+  handleCloseSnackbar=(id)=>{
+    this.setState({
+      lastError: null
+    })
+  }
+
   render() {
     return (
-      <div>
+      <div style={{maxWidth: '992px', margin:'0 auto'}}>
         <ButtonsContainer>
           {this.renderButton()}
           <StyledButton variant="contained" onClick={()=>this.handleDeleteAll()}>CLEAR</StyledButton>
@@ -103,6 +117,22 @@ class MessageList extends Component {
             <MessageColumn messages={this.state.messages.filter(m=>m.priority===3)} type={3} onDelete={id=> this.handleDelete(id)}/>
           </Column>
         </Row>
+        <Snackbar
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={this.state.lastError != null}
+            autoHideDuration={2000}
+            message={this.state.lastError?.message||''}
+            action={
+              <React.Fragment>
+                <Button size="small" aria-label="close" color="secondary" onClick={()=>this.handleCloseSnackbar(this.state.lastError?.id)}>
+                  Close
+                </Button>
+              </React.Fragment>
+            }
+        />
       </div>
     )
   }
