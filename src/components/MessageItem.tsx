@@ -24,7 +24,7 @@ export const MessageItem = ({message, onClear}: MessageProps) => {
                 return '#88FCA3';
         }
     }
-    return <StyledCard color={getBackgroundColor()}>
+    return <StyledCard color={getBackgroundColor()} data-testid={'bgtest'}>
         <CardContent>
             <Typography variant={"body2"} component={"p"}>{message.message}</Typography>
             <div style={{textAlign: 'right'}}>
