@@ -18,6 +18,7 @@ const Column = styled.div`
 const StyledButton = styled(Button)`
   background-color: #88FCA3 !important;
   color: black;
+  font-weight: bold!important;
 `
 
 const ButtonsContainer = styled.div`
