@@ -25,7 +25,7 @@ const ButtonsContainer = styled.div`
   justify-content: center;
 `
 
-class MessageList extends Component {
+export class MessageList extends Component {
   constructor(...args) {
     super(...args)
     this.state = {
