@@ -127,7 +127,12 @@ export class MessageList extends Component {
             open={this.state.lastError != null}
             autoHideDuration={2000}
             message={this.state.lastError?.message||''}
-            onClose={()=>this.handleCloseSnackbar(this.state.lastError?.id)}
+            onClose={(event, reason) => {
+              if (reason === 'clickaway') {
+                return;
+              }
+              this.handleCloseSnackbar(this.state.lastError?.id)
+            }}
             action={
               <React.Fragment>
                 <Button size="small" aria-label="close" color="secondary" onClick={()=>this.handleCloseSnackbar(this.state.lastError?.id)}>
